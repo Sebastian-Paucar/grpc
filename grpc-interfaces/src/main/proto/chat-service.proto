@@ -1,0 +1,24 @@
+syntax = "proto3";
+package com.grpcDemo.interfaces;
+
+option java_multiple_files=true;
+option java_package = "com.grpcDemo.interfaces";
+option java_outer_classname = "ChatServiceProto";
+
+
+service ChatService {
+  rpc SendMessage (ChatMessage) returns (ChatResponse){};
+  rpc SendMuiltiMessage (stream ChatMessage) returns (ChatResponse){};
+  rpc ReciveMuiltiMessage (ChatMessage) returns (stream ChatResponse){};
+  rpc SendReciveMuiltiMessage (stream ChatMessage) returns (stream ChatResponse){};
+}
+
+message ChatMessage {
+  uint32 from = 1;
+  string message = 2;
+}
+
+message ChatResponse {
+  uint32 from = 1;
+  string message = 2;
+}
